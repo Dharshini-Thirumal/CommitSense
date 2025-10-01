@@ -20,16 +20,16 @@ def get_latest_commit_info():
     return author, message, diff
 
 def insert_commit(author, message, diff):
-    """Insert commit info into Supabase table GitCommits."""
+    """Insert commit info into Supabase table gitcommits."""
     supabase = get_supabase_client()
     data = {
-        "timestamp": datetime.utcnow().isoformat(),
+        "created_at": datetime.now().isoformat(),
         "author": author,
         "message": message,
         "diff": diff,
         "ai_summary": None  # placeholder for AI summary
     }
-    response = supabase.table("GitCommits").insert(data).execute()
+    response = supabase.table("gitcommits").insert(data).execute()
     print("Inserted:", response)
 
 if __name__ == "__main__":
